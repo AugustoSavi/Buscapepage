@@ -1,14 +1,17 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './pages/login/login.component';
+import { Routes, RouterModule, PreloadAllModules } from "@angular/router";
+import { AuthGuard } from "./guards/auth.guard";
+import { NgModule } from "@angular/core";
+import { HomeComponent } from "./pages/home/home.component";
+import { NotFoundComponent } from "./pages/not-found/not-found.component";
 
 const routes: Routes = [
-  {path:'/login', component: LoginComponent}
-
-];
+	{ path: '', redirectTo: '/', pathMatch: 'full' },
+	{ path: '', component: HomeComponent },
+	{ path: '**', component: NotFoundComponent }
+]	
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+	imports: [RouterModule.forRoot(routes)],
+	exports: [RouterModule]
 })
 export class AppRoutingModule { }
